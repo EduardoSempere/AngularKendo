@@ -61,35 +61,53 @@ export class AppComponent {
         }
       }
 
-      
+ 
       this.disableCheck = false;
-      this.disableButton= true;
+      this.mySelection = []; 
+      this.disableButton = true;
       this.comboDisable = true;
-      
+
+    }
+    if (value == "Price") {
+      let obj: any;
+
+      for (let index = 0; index < this.param.length; index++) {
+        obj = this.gridData.find(data => data.ProductID == this.param[index])
+        if (obj) {
+          obj.Discontinued = false;
+        }
+      }
+
+
+      this.disableCheck = false;
+      this.mySelection = [];
+      this.disableButton = true;
+      this.comboDisable = true;
+
     }
   }
 
-  deleteAllImage(){
+  deleteAllImage() {
     for (let index = 0; index < this.gridData.length; index++) {
       this.gridData[index].Discontinued = false;
 
     }
   }
 
-  reset(){
+  reset() {
     this.disableCheck = true;
-    this.disableButton= true;
+    this.disableButton = true;
     this.mySelection = [];
     this.param = [];
     this.deleteAllImage();
     this.selectableSettings = {
-      enabled:true,
-        checkboxOnly: this.checkboxOnly,
-         
-        drag: this.drag
+      enabled: true,
+      checkboxOnly: this.checkboxOnly,
+
+      drag: this.drag
     };
 
-    this.valorCombo=null;
+    this.valorCombo = null;
   }
 
   public filterChange(filter: any): void {

@@ -3,24 +3,19 @@
     allowUnsort: true,
     mode: 'single'
     }" [sort]="sort1" [pageable]="true" filterable="menu" (sortChange)="sortChange($event)"
-    
-            kendoGridSelectBy="ProductID"
-            [selectable]="selectableSettings" 
-            [selectedKeys]="mySelection"
-            (selectedKeysChange)="onSelectedKeysChange($event)"
-    >
-    <ng-template kendoGridToolbarTemplate>
-      <kendo-combobox [disabled]="comboDisable"  [data]="listItems"  (valueChange)="valueChange($event)" [valueField]="valorCombo"
-      (selectionChange)="selectionChange($event)"
-      (filterChange)="filterChange($event)">
-      </kendo-combobox> 
-      <button (click)="reset()" [disabled]="disableButton" kendoButton>Delete Selection</button>
+  kendoGridSelectBy="ProductID" [selectable]="selectableSettings" [selectedKeys]="mySelection"
+  (selectedKeysChange)="onSelectedKeysChange($event)">
+  <ng-template kendoGridToolbarTemplate>
+    <kendo-combobox [disabled]="comboDisable" [data]="listItems" (valueChange)="valueChange($event)"
+     (selectionChange)="selectionChange($event)" (filterChange)="filterChange($event)">
+    </kendo-combobox>
+    <button (click)="reset()" [disabled]="disableButton" kendoButton>Delete Selection</button>
   </ng-template>
 
-    <kendo-grid-checkbox-column    showSelectAll="true">
-         
-    </kendo-grid-checkbox-column>
-     
+  <kendo-grid-checkbox-column showSelectAll="true">
+
+  </kendo-grid-checkbox-column>
+
   <kendo-grid-column field="ProductID" title="ID" width="200">
   </kendo-grid-column>
   <kendo-grid-column field="ProductName" title="Name" width="200">
@@ -30,16 +25,16 @@
   <kendo-grid-column field="UnitPrice" title="Price" width="200">
   </kendo-grid-column>
   <kendo-grid-column field="UnitsInStock" title="In stock" width="200">
-  </kendo-grid-column>  
+  </kendo-grid-column>
   <kendo-grid-column field="Discontinued" title="Don't Price" width="200">
     <ng-template kendoGridCellTemplate let-dataItem>
       <img src="../assets/dollar.png" width="20" height="20" alt="" *ngIf="dataItem.Discontinued">
-  
+
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column  title="Acction" width="200">
+  <kendo-grid-column title="Acction" width="200">
     <ng-template kendoGridCellTemplate let-dataItem>
-      <kendo-icon [name]="'clip'"></kendo-icon>
+      <kendo-icon [name]="'delete'"></kendo-icon>
     </ng-template>
   </kendo-grid-column>
 
