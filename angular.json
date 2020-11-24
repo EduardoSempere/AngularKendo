@@ -25,9 +25,10 @@
             ],
             "styles": [
               {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.scss"
               },
-              "src/styles.css"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -92,9 +93,10 @@
             ],
             "styles": [
               {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                "input": "node_modules/@progress/kendo-theme-default/dist/all.scss"
               },
-              "src/styles.css"
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           }
@@ -127,5 +129,10 @@
       }
     }
   },
-  "defaultProject": "dashboard"
+  "defaultProject": "dashboard",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

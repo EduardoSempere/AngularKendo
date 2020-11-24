@@ -1,30 +1,92 @@
-<kendo-grid [data]="gridView" [resizable]="true" [pageSize]="state.take" [skip]="state.skip" [sort]="state.sort"
-  [filter]="state.filter" [sortable]="{
-    allowUnsort: true,
-    mode: 'single'
-    }" [sort]="sort1" [pageable]="true" filterable="menu" (sortChange)="sortChange($event)"
-  kendoGridSelectBy="ProductID" [selectable]="selectableSettings" [selectedKeys]="mySelection"
-  (selectedKeysChange)="onSelectedKeysChange($event)">
-  <ng-template kendoGridToolbarTemplate>
-    <kendo-combobox [disabled]="comboDisable" [data]="listItems" (valueChange)="valueChange($event)"
-     (selectionChange)="selectionChange($event)" (filterChange)="filterChange($event)">
-    </kendo-combobox>
-    <button (click)="reset()" [disabled]="disableButton" kendoButton>Delete Selection</button>
+
+ 
+<ul class="nav nav-tabs nav-stacked">
+  <li class="nav-item">
+    <a href="#" class="nav-link " routerLinkActive="active">Active</a>
+  </li>
+  <li class="nav-item">
+    <a href="#" class="nav-link"  routerLinkActive="active">Link</a>
+  </li>
+  <li class="nav-item disabled">
+    <a href="#" class="nav-link" routerLinkActive="active">Disabled</a>
+  </li>
+</ul>
+
+
+<kendo-grid [data]="gridView" 
+            [resizable]="true" 
+            [pageSize]="state.take" 
+            [skip]="state.skip"  
+            [filter]="state.filter" 
+            [sortable]="{ allowUnsort: true, mode: 'single'}" 
+            [sort]="sort1" 
+            [pageable]="true" 
+            filterable="menu" 
+            (sortChange)="sortChange($event)"
+            kendoGridSelectBy="ProductID"  
+            [selectedKeys]="mySelection"
+            (selectedKeysChange)="onSelectedKeysChange($event)"
+            >
+
+  <ng-template kendoGridToolbarTemplate> 
+    <div class="row">
+      <div class="col-6 col-md-6">
+        <label>Cost Basis Total *: $1,011.872</label>      
+        <label>Market Value : $2,260.374</label>
+      </div>
+      
+      <div  class="col-6 col-md-6 text-right">
+        Apply to selected
+         <kendo-combobox [disabled]="comboDisable" [data]="listItems"
+          (selectionChange)="selectionChange($event)" >
+        </kendo-combobox>
+        <button  [disabled]="disableButton" kendoButton style="margin-left: 3px;">Delete Selection</button>
+      </div>
+    </div>
+        
+         
+       
   </ng-template>
 
-  <kendo-grid-checkbox-column showSelectAll="true">
+  <kendo-grid-checkbox-column     [width]="40" 
+                showSelectAll="true"   
+                
+              >
 
-  </kendo-grid-checkbox-column>
+  </kendo-grid-checkbox-column   >
 
-  <kendo-grid-column field="ProductID" title="ID" width="200">
+  <kendo-grid-column field="ProductID"  width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      ID  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
+  </kendo-grid-column >
+  <kendo-grid-column field="ProductName"   width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      Name  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="ProductName" title="Name" width="200">
+  <kendo-grid-column field="Category.CategoryName"    width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      Category  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="Category.CategoryName" title="Category">
-  </kendo-grid-column>
+  <kendo-grid-column field="UnitPrice"  width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      Price  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
+  </kendo-grid-column>  
   <kendo-grid-column field="UnitPrice" title="Price" width="200">
-  </kendo-grid-column>
-  <kendo-grid-column field="UnitsInStock" title="In stock" width="200">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="200">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="200">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="200">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitsInStock"   width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      In stock  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
   </kendo-grid-column>
   <kendo-grid-column field="Discontinued" title="Don't Price" width="200">
     <ng-template kendoGridCellTemplate let-dataItem>

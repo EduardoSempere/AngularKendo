@@ -34,11 +34,13 @@
     "@progress/kendo-angular-popup": "^3.0.0",
     "@progress/kendo-data-query": "^1.5.4",
     "@progress/kendo-drawing": "^1.9.3",
+    "@progress/kendo-svg-icons": "^0.0.3",
+    "@progress/kendo-theme-bootstrap": "^4.24.0",
     "@progress/kendo-theme-default": "latest",
+    "bootstrap": "^4.5.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "@progress/kendo-svg-icons": "^0.0.3"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.7",

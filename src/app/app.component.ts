@@ -5,21 +5,19 @@ import { GridDataResult, PageChangeEvent, SelectableSettings, SelectAllCheckboxS
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
   constructor() {
-    this.loadProducts();
-    this.setSelectableSettings();
+    this.loadProducts(); 
   }
 
   public checkboxOnly = false;
   public disableCheck = true;
   public disableButton = true;
   public mode = 'multiple';
-  public drag = false;
-  public selectableSettings: SelectableSettings;
+  unholding = false;
 
   public allowCustom = true;
   public listItems: Array<string> = ["Don't price", 'Price'];
@@ -30,28 +28,13 @@ export class AppComponent {
   public multiple = false;
   public allowUnsort = true;
 
-  comboDisable: boolean = true;
+  comboDisable = true;
 
-  public setSelectableSettings(): void {
-    if (this.checkboxOnly || this.mode === 'single') {
-      this.drag = false;
-    }
-
-    this.selectableSettings = {
-      enabled: true,
-      checkboxOnly: this.checkboxOnly,
-
-      drag: this.drag
-    };
-  }
-
-  public valueChange(value: any): void {
-    console.log('valueChange', value);
-  }
-
+  
+ 
   public selectionChange(value: any): void {
     console.log('selectionChange', value);
-    if (value == "Don't price") {
+    if (value === "Don't price") {
       let obj: any;
       this.deleteAllImage();
       for (let index = 0; index < this.param.length; index++) {
@@ -67,8 +50,10 @@ export class AppComponent {
       this.disableButton = true;
       this.comboDisable = true;
 
+
+
     }
-    if (value == "Price") {
+    if (value === "Price") {
       let obj: any;
 
       for (let index = 0; index < this.param.length; index++) {
@@ -94,27 +79,6 @@ export class AppComponent {
     }
   }
 
-  reset() {
-    this.disableCheck = true;
-    this.disableButton = true;
-    this.mySelection = [];
-    this.param = [];
-    this.deleteAllImage();
-    this.selectableSettings = {
-      enabled: true,
-      checkboxOnly: this.checkboxOnly,
-
-      drag: this.drag
-    };
-
-    this.valorCombo = null;
-  }
-
-  public filterChange(filter: any): void {
-    console.log('filterChange', filter);
-    this.gridData = this.gridData.filter((s) => s.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
-  }
-
   public onSelectedKeysChange(p: any) {
 
     if (p.length > 0) {
@@ -131,6 +95,12 @@ export class AppComponent {
 
 
   }
+
+  unHolding(){
+    console.log(this.unholding);
+    this.unholding = !this.unholding;
+  }
+
   public sort1: SortDescriptor[] = [{
     field: 'UnitPrice',
     dir: 'asc'
