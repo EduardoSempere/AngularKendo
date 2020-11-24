@@ -1,17 +1,9 @@
-
- 
-<ul class="nav nav-tabs nav-stacked">
-  <li class="nav-item">
-    <a href="#" class="nav-link " routerLinkActive="active">Active</a>
-  </li>
-  <li class="nav-item">
-    <a href="#" class="nav-link"  routerLinkActive="active">Link</a>
-  </li>
-  <li class="nav-item disabled">
-    <a href="#" class="nav-link" routerLinkActive="active">Disabled</a>
-  </li>
-</ul>
-
+ <hr>
+<nav class="nav nav-tabs nav-stacked">
+  <a class="nav-link active" href="#">Holdings</a>
+  <a class="nav-link" href="#">Unresolved Holdings</a>
+  
+</nav>
 
 <kendo-grid [data]="gridView" 
             [resizable]="true" 
@@ -55,7 +47,7 @@
 
   </kendo-grid-checkbox-column   >
 
-  <kendo-grid-column field="ProductID"  width="200">
+  <kendo-grid-column field="ProductID"  width="90">
     <ng-template kendoGridHeaderTemplate  >
       ID  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
     </ng-template>
@@ -70,34 +62,48 @@
       Category  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="UnitPrice"  width="200">
+  <kendo-grid-column field="UnitPrice"  width="150">
     <ng-template kendoGridHeaderTemplate  >
       Price  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
     </ng-template>
   </kendo-grid-column>  
-  <kendo-grid-column field="UnitPrice" title="Price" width="200">
-  </kendo-grid-column>  
-  <kendo-grid-column field="UnitPrice" title="Price" width="200">
-  </kendo-grid-column>  
-  <kendo-grid-column field="UnitPrice" title="Price" width="200">
-  </kendo-grid-column>  
-  <kendo-grid-column field="UnitPrice" title="Price" width="200">
-  </kendo-grid-column>  
-  <kendo-grid-column field="UnitsInStock"   width="200">
+  
+  <kendo-grid-column field="UnitsInStock"   width="120">
     <ng-template kendoGridHeaderTemplate  >
       In stock  <kendo-icon [name]="'arrows-swap'"></kendo-icon>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="Discontinued" title="Don't Price" width="200">
+  <kendo-grid-column field="Discontinued" width="200">
+    <ng-template kendoGridHeaderTemplate  >
+      Don't Price <kendo-icon [name]="'question'" alt="Pregunta"></kendo-icon>
+       <kendo-icon [name]="'arrows-swap'"></kendo-icon>
+    </ng-template>
     <ng-template kendoGridCellTemplate let-dataItem>
-      <img src="../assets/dollar.png" width="20" height="20" alt="" *ngIf="dataItem.Discontinued">
-
+     
+      <img src="../assets/dollar.png" class="img-responsive img-center" width="20" height="20" alt="" *ngIf="dataItem.Discontinued">
+    
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column title="Acction" width="200">
+  <kendo-grid-column title="Acction" width="100">
     <ng-template kendoGridCellTemplate let-dataItem>
       <kendo-icon [name]="'delete'"></kendo-icon>
     </ng-template>
   </kendo-grid-column>
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
+  <kendo-grid-column field="UnitPrice" title="Price" width="120">
+  </kendo-grid-column>  
 
 </kendo-grid>

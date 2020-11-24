@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SortDescriptor, orderBy, State } from '@progress/kendo-data-query';
 import { GridDataResult, PageChangeEvent, SelectableSettings, SelectAllCheckboxState } from '@progress/kendo-angular-grid';
+import { IData } from './model/idata';
+import { valueKcombobox } from './const';
 
 @Component({
   selector: 'app-root',
@@ -17,90 +19,19 @@ export class AppComponent {
   public disableCheck = true;
   public disableButton = true;
   public mode = 'multiple';
-  unholding = false;
-
+ 
   public allowCustom = true;
   public listItems: Array<string> = ["Don't price", 'Price'];
-  mySelection: any[] = [];
+  mySelection: number[] = [];
   valorCombo: any;
-  param: any[] = [];
+  param: number[] = [];
   title = 'dashboard';
   public multiple = false;
   public allowUnsort = true;
 
   comboDisable = true;
 
-  
  
-  public selectionChange(value: any): void {
-    console.log('selectionChange', value);
-    if (value === "Don't price") {
-      let obj: any;
-      this.deleteAllImage();
-      for (let index = 0; index < this.param.length; index++) {
-        obj = this.gridData.find(data => data.ProductID == this.param[index])
-        if (obj) {
-          obj.Discontinued = true;
-        }
-      }
-
- 
-      this.disableCheck = false;
-      this.mySelection = []; 
-      this.disableButton = true;
-      this.comboDisable = true;
-
-
-
-    }
-    if (value === "Price") {
-      let obj: any;
-
-      for (let index = 0; index < this.param.length; index++) {
-        obj = this.gridData.find(data => data.ProductID == this.param[index])
-        if (obj) {
-          obj.Discontinued = false;
-        }
-      }
-
-
-      this.disableCheck = false;
-      this.mySelection = [];
-      this.disableButton = true;
-      this.comboDisable = true;
-
-    }
-  }
-
-  deleteAllImage() {
-    for (let index = 0; index < this.gridData.length; index++) {
-      this.gridData[index].Discontinued = false;
-
-    }
-  }
-
-  public onSelectedKeysChange(p: any) {
-
-    if (p.length > 0) {
-      this.comboDisable = false;
-      this.disableButton = false;
-
-    } else {
-      this.comboDisable = true;
-      this.disableButton = true;
-    }
-
-    this.param = p;
-
-
-
-  }
-
-  unHolding(){
-    console.log(this.unholding);
-    this.unholding = !this.unholding;
-  }
-
   public sort1: SortDescriptor[] = [{
     field: 'UnitPrice',
     dir: 'asc'
@@ -121,7 +52,7 @@ export class AppComponent {
     }
   };
 
-  public gridData: any[] = [
+  public gridData: IData[] = [
     {
       "ProductID": 1,
       "ProductName": "Chai",
@@ -215,6 +146,70 @@ export class AppComponent {
   ];
 
   public gridView: GridDataResult;
+
+  
+ 
+  public selectionChange(value: string): void {
+    console.log('selectionChange', value);
+    if (value === valueKcombobox.dontPrice) {
+      let obj: IData;
+      this.deleteAllImage();
+      for (let index = 0; index < this.param.length; index++) {
+        obj = this.gridData.find(data => data.ProductID === this.param[index])
+        if (obj) {
+          obj.Discontinued = true;
+        }
+      }
+
+ 
+      this.disableCheck = false;
+      this.mySelection = []; 
+      this.disableButton = true;
+      this.comboDisable = true;
+
+
+
+    }
+    if (value === valueKcombobox.price) {
+      let obj: IData;
+
+      for (const id of this.param) {
+        obj = this.gridData.find(data => data.ProductID === id);
+        if (obj) {
+          obj.Discontinued = false;
+        }
+      }
+      this.disableCheck = false;
+      this.mySelection = [];
+      this.disableButton = true;
+      this.comboDisable = true;
+
+    }
+  }
+
+  deleteAllImage() {
+    for (let index = 0; index < this.gridData.length; index++) {
+      this.gridData[index].Discontinued = false;
+
+    }
+  }
+
+  public onSelectedKeysChange(p: any) {
+
+    if (p.length > 0) {
+      this.comboDisable = false;
+      this.disableButton = false;
+
+    } else {
+      this.comboDisable = true;
+      this.disableButton = true;
+    }
+
+    this.param = p;
+
+
+
+  }
 
   public sortChange(sort1: SortDescriptor[]): void {
     this.sort1 = sort1;
